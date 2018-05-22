@@ -1,7 +1,7 @@
 ## demo
 
 rm(list = ls())
-setwd("C:\\Users\\kevin\\Desktop\\try")
+setwd("C:\\Users\\kevin\\Desktop\\YourDir") ## change to the direcotry including all source codes and datasets
 source("ppmiCFDTI.R")
 
 
