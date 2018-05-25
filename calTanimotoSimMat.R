@@ -1,15 +1,9 @@
-## http://stats.stackexchange.com/questions/49453/calculating-jaccard-or-other-association-coefficient-for-binary-data-using-matri
-#'
-#'
-#'
 #' use sparse matrix to calculate tanimoto similarity matrix
 #'
 #'
 #' @param descMat input matrix, which is usually descritor (fingerprints {0, 1}) matrix
 #'
-#'
-#'
-#'
+
 
 
 
