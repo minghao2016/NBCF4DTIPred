@@ -1,13 +1,16 @@
 ## demo
 
 rm(list = ls())
-setwd("C:\\Users\\kevin\\Desktop\\NBCF4DTIPred-master") ## change to the direcotry including all source codes and datasets
+setwd("Your dir") ## change to the direcotry including all source codes and datasets
 source("ppmiCFDTI.R")
 
 
 
 dat <- c("hao", "kuang", "e")
+###################################
+## 5-fold cross-validation
 numFolds <- 5 ## default 10
+###################################
 
 for (db in dat) {
  
@@ -117,14 +120,11 @@ for (db in dat) {
 }
 
 
-
-
 ## 2018-08-02 for revised paper
 ## make picture
 
 rm(list = ls())
-setwd("C:/Users/kevin/Desktop/NBCF4DTIPred-master")
-
+setwd("Your dir")
 
 ## strategy 1
 ## hao_srep
@@ -144,8 +144,6 @@ res4plot_dthybrid <- res4plot
 hao <- rbind(res4plot_PPMI, res4plot_cosine, res4plot_tanimoto, res4plot_dthybrid)
 ###
 
-
-
 ## kuang_srep
 load("kuang_smoothing.FALSE_isLowRankApprox.FALSE_PPMI.RData")
 res4plot_PPMI <- res4plot
@@ -163,8 +161,6 @@ res4plot_dthybrid <- res4plot
 kuang <- rbind(res4plot_PPMI, res4plot_cosine, res4plot_tanimoto, res4plot_dthybrid)
 ###
 
-
-
 ## yamanishi_bioinf
 load("e_smoothing.FALSE_isLowRankApprox.FALSE_PPMI.RData")
 res4plot_PPMI <- res4plot
@@ -181,9 +177,6 @@ res4plot_dthybrid <- res4plot
 
 yaman <- rbind(res4plot_PPMI, res4plot_cosine, res4plot_tanimoto, res4plot_dthybrid)
 ###
-
-
-
 
 ## strategy 2
 ## hao_srep
@@ -203,8 +196,6 @@ res4plot_dthybrid <- res4plot
 hao_svd <- rbind(res4plot_PPMI_svd, res4plot_cosine_svd, res4plot_tanimoto_svd, res4plot_dthybrid)
 ###
 
-
-
 ## kuang_srep
 load("kuang_smoothing.FALSE_isLowRankApprox.TRUE_PPMI.RData")
 res4plot_PPMI_svd <- res4plot
@@ -222,8 +213,6 @@ res4plot_dthybrid <- res4plot
 kuang_svd <- rbind(res4plot_PPMI_svd, res4plot_cosine_svd, res4plot_tanimoto_svd, res4plot_dthybrid)
 ###
 
-
-
 ## yamanishi_bioinf
 load("e_smoothing.FALSE_isLowRankApprox.TRUE_PPMI.RData")
 res4plot_PPMI_svd <- res4plot
@@ -240,8 +229,6 @@ res4plot_dthybrid <- res4plot
 
 yaman_svd <- rbind(res4plot_PPMI_svd, res4plot_cosine_svd, res4plot_tanimoto_svd, res4plot_dthybrid)
 ###
-
-
 
 
 ## strategy 3
@@ -262,8 +249,6 @@ res4plot_dthybrid <- res4plot
 hao_smooth <- rbind(res4plot_PPMI_smooth, res4plot_cosine_smooth, res4plot_tanimoto_smooth, res4plot_dthybrid)
 ###
 
-
-
 ## kuang_srep
 load("kuang_smoothing.TRUE_isLowRankApprox.FALSE_PPMI.RData")
 res4plot_PPMI_smooth <- res4plot
@@ -281,8 +266,6 @@ res4plot_dthybrid <- res4plot
 kuang_smooth <- rbind(res4plot_PPMI_smooth, res4plot_cosine_smooth, res4plot_tanimoto_smooth, res4plot_dthybrid)
 ###
 
-
-
 ## yamanishi_bioinf
 load("e_smoothing.TRUE_isLowRankApprox.FALSE_PPMI.RData")
 res4plot_PPMI_smooth <- res4plot
@@ -299,8 +282,6 @@ res4plot_dthybrid <- res4plot
 
 yaman_smooth <- rbind(res4plot_PPMI_smooth, res4plot_cosine_smooth, res4plot_tanimoto_smooth, res4plot_dthybrid)
 ###
-
-
 
 
 ## figure
@@ -425,72 +406,5 @@ mtext(side = 2, text = "MPR", line = 2)
 mtext("(I) DATASET-Y (Strategy 3)", line = 0.5)
 ###
 dev.off()
-
-
-
-
-
-###
-### revised manuscript for adding pairwise t-test
-## strategy 1
-hao
-## strategy 1, dataset h, and method
-s1_h_ppm <- hao[hao$alg == "PPMI", 1]
-s1_h_cos <- hao[hao$alg == "cosine", 1]
-s1_h_tan <- hao[hao$alg == "tanimoto", 1]
-
-mean(s1_h_ppm)
-mean(s1_h_cos)
-mean(s1_h_tan)
-
-## pairwise t-test
-t.test(s1_h_ppm, s1_h_cos, paired = TRUE, conf.level = 0.99)
-t.test(s1_h_ppm, s1_h_tan, paired = TRUE, conf.level = 0.99)
-t.test(s1_h_cos, s1_h_tan, paired = TRUE, conf.level = 0.99) ## 0.04024
-
-kuang
-## strategy 1, dataset k, and method
-s1_k_ppm <- kuang[kuang$alg == "PPMI", 1]
-s1_k_cos <- kuang[kuang$alg == "cosine", 1]
-s1_k_tan <- kuang[kuang$alg == "tanimoto", 1]
-
-mean(s1_k_ppm)
-mean(s1_k_cos)
-mean(s1_k_tan)
-
-## pairwise t-test
-t.test(s1_k_ppm, s1_k_cos, paired = TRUE, conf.level = 0.99)
-t.test(s1_k_ppm, s1_k_tan, paired = TRUE, conf.level = 0.99)
-t.test(s1_k_cos, s1_k_tan, paired = TRUE, conf.level = 0.99) ## 0.6184
-
-yaman
-## strategy 1, dataset k, and method
-s1_y_ppm <- yaman[yaman$alg == "PPMI", 1]
-s1_y_cos <- yaman[yaman$alg == "cosine", 1]
-s1_y_tan <- yaman[yaman$alg == "tanimoto", 1]
-
-mean(s1_y_ppm)
-mean(s1_y_cos)
-mean(s1_y_tan)
-
-## pairwise t-test
-t.test(s1_y_ppm, s1_y_cos, paired = TRUE, conf.level = 0.99)
-t.test(s1_y_ppm, s1_y_tan, paired = TRUE, conf.level = 0.99)
-t.test(s1_y_cos, s1_y_tan, paired = TRUE, conf.level = 0.99) ## 0.4337
-
-## strategy II
-hao_svd
-s2_h_cos <- hao_svd[hao_svd$alg == "cosine", 1]
-mean(s2_h_cos)
-
-
-
-
-
-
-
-
-
-
 
 
