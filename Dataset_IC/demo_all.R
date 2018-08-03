@@ -1,7 +1,7 @@
 ## demo
 
 rm(list = ls())
-setwd("C:\\Users\\kevin\\Desktop\\NBCF4DTIPred-master\\Dataset_IC") ## change to the direcotry including all source codes and datasets
+setwd("Your dir") ## change to the direcotry including all source codes and datasets
 source("ppmiCFDTI.R")
 
 
@@ -123,7 +123,7 @@ for (db in dat) {
 ## make picture for IC
 
 rm(list = ls())
-setwd("C:\\Users\\kevin\\Desktop\\NBCF4DTIPred-master\\Dataset_IC")
+setwd("Your dir")
 
 
 ## Strategy 1
@@ -181,11 +181,6 @@ res4plot_dthybrid <- res4plot
 ic_smooth <- rbind(res4plot_PPMI_smooth, res4plot_cosine_smooth, res4plot_tanimoto_smooth, res4plot_dthybrid)
 ###
 
-
-
-
-
-
 ## figure
 #pdf("MPR.pdf", width = 9, height = 9)
 tiff("MPR.tiff", 
@@ -236,66 +231,6 @@ mtext("(C) IC (Strategy 3)", line = 0.5)
 
 ###
 dev.off()
-
-
-
-
-
-###
-### revised manuscript for adding pairwise t-test
-## strategy 1
-hao
-## strategy 1, dataset h, and method
-s1_h_ppm <- hao[hao$alg == "PPMI", 1]
-s1_h_cos <- hao[hao$alg == "cosine", 1]
-s1_h_tan <- hao[hao$alg == "tanimoto", 1]
-
-mean(s1_h_ppm)
-mean(s1_h_cos)
-mean(s1_h_tan)
-
-## pairwise t-test
-t.test(s1_h_ppm, s1_h_cos, paired = TRUE, conf.level = 0.99)
-t.test(s1_h_ppm, s1_h_tan, paired = TRUE, conf.level = 0.99)
-t.test(s1_h_cos, s1_h_tan, paired = TRUE, conf.level = 0.99) ## 0.04024
-
-kuang
-## strategy 1, dataset k, and method
-s1_k_ppm <- kuang[kuang$alg == "PPMI", 1]
-s1_k_cos <- kuang[kuang$alg == "cosine", 1]
-s1_k_tan <- kuang[kuang$alg == "tanimoto", 1]
-
-mean(s1_k_ppm)
-mean(s1_k_cos)
-mean(s1_k_tan)
-
-## pairwise t-test
-t.test(s1_k_ppm, s1_k_cos, paired = TRUE, conf.level = 0.99)
-t.test(s1_k_ppm, s1_k_tan, paired = TRUE, conf.level = 0.99)
-t.test(s1_k_cos, s1_k_tan, paired = TRUE, conf.level = 0.99) ## 0.6184
-
-yaman
-## strategy 1, dataset k, and method
-s1_y_ppm <- yaman[yaman$alg == "PPMI", 1]
-s1_y_cos <- yaman[yaman$alg == "cosine", 1]
-s1_y_tan <- yaman[yaman$alg == "tanimoto", 1]
-
-mean(s1_y_ppm)
-mean(s1_y_cos)
-mean(s1_y_tan)
-
-## pairwise t-test
-t.test(s1_y_ppm, s1_y_cos, paired = TRUE, conf.level = 0.99)
-t.test(s1_y_ppm, s1_y_tan, paired = TRUE, conf.level = 0.99)
-t.test(s1_y_cos, s1_y_tan, paired = TRUE, conf.level = 0.99) ## 0.4337
-
-## strategy II
-hao_svd
-s2_h_cos <- hao_svd[hao_svd$alg == "cosine", 1]
-mean(s2_h_cos)
-
-
-
 
 
 
